@@ -505,7 +505,7 @@ static const void * const MTICIImageMTIImageAssociationKey = &MTICIImageMTIImage
     [commandEncoder endEncoding];
     
     id<MTLDrawable> drawable = [drawableProvider drawableForRequest:request];
-    [renderingContext.commandBuffer presentDrawable:drawable];
+    //[renderingContext.commandBuffer presentDrawable:drawable];
     
     MTIRenderTask *task = [[MTIRenderTask alloc] initWithCommandBuffer:renderingContext.commandBuffer];
     if (completion) {
@@ -515,6 +515,7 @@ static const void * const MTICIImageMTIImageAssociationKey = &MTICIImageMTIImage
     }
     [renderingContext.commandBuffer commit];
     [renderingContext.commandBuffer waitUntilScheduled];
+    [drawable present];
     
     return task;
 }
